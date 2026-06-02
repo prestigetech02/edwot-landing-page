@@ -7,8 +7,8 @@ export default function Hero() {
   return (
     <section className="relative overflow-x-hidden pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid gap-10 items-start lg:items-center lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="w-full lg:max-w-xl text-center lg:text-left space-y-6 mx-auto lg:mx-0">
+        <div className="grid gap-10 items-start lg:items-center lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="w-full lg:max-w-2xl text-center lg:text-left space-y-6 mx-auto lg:mx-0">
             <Reveal variant="fadeUpSubtle" delay={0.05}>
               <div className="inline-flex items-center gap-2 bg-[#1800AD]/10 border border-[#1800AD]/20 rounded-full px-3.5 py-1 text-sm mx-auto lg:mx-0">
                 <span className="text-[#1800AD]">✨</span>
@@ -17,7 +17,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal variant="fadeUp" delay={0.12}>
-              <h1 className="text-[34px] sm:text-[46px] lg:text-[58px] xl:text-[70px] font-black text-gray-900 leading-tight">
+              <h1 className="text-[34px] sm:text-[46px] lg:text-[52px] xl:text-[64px] font-black text-gray-900 leading-tight">
                 <span className="block">Run Your School.</span>
                 <span className="block">Simplify Everything.</span>
                 <span className="block lg:whitespace-nowrap">
