@@ -17,10 +17,10 @@ export default function Hero() {
             </Reveal>
 
             <Reveal variant="fadeUp" delay={0.12}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 leading-tight">
+              <h1 className="text-[34px] sm:text-[46px] lg:text-[58px] xl:text-[70px] font-black text-gray-900 leading-tight">
                 <span className="block">Run Your School.</span>
                 <span className="block">Simplify Everything.</span>
-                <span className="block">
+                <span className="block lg:whitespace-nowrap">
                   Focus on{' '}
                   <span className="relative inline-block">
                     <span className="text-[#1800AD]">Education.</span>
