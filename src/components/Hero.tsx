@@ -39,15 +39,15 @@ export default function Hero() {
             </Reveal>
 
             <Reveal variant="fadeUp" delay={0.28}>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
                 <MagneticButton>
-                  <button className="bg-[#1800AD] hover:bg-[#140088] text-white font-semibold px-5 sm:px-7 py-3 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 transition-colors">
-                    Start Free Trial <ArrowRight className="w-4 h-4" />
+                  <button className="bg-[#1800AD] hover:bg-[#140088] text-white text-sm sm:text-base font-semibold px-4 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors">
+                    Start Free Trial <ArrowRight className="w-4 h-4 shrink-0" />
                   </button>
                 </MagneticButton>
                 <MagneticButton strength={0.25}>
-                  <button className="flex items-center justify-center gap-2 border border-gray-300 bg-white text-gray-700 font-semibold px-5 sm:px-6 py-3 rounded-lg sm:rounded-xl hover:bg-gray-100 transition-colors card-elevate">
-                    <Play className="w-4 h-4" />
+                  <button className="inline-flex items-center justify-center gap-2 border border-gray-300 bg-white text-gray-700 text-sm sm:text-base font-semibold px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl whitespace-nowrap hover:bg-gray-100 transition-colors card-elevate">
+                    <Play className="w-4 h-4 shrink-0" />
                     Watch Demo
                   </button>
                 </MagneticButton>

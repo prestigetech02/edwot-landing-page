@@ -88,6 +88,20 @@ export const pageSeoConfig: Record<AppPage, PageSeo> = {
     ],
     ogImage: DEFAULT_OG_IMAGE,
   },
+  blog: {
+    path: '/blog',
+    title: `Blog — ${SITE_NAME} EdTech, Management & Innovation`,
+    description:
+      'Read the Edwot blog for education technology insights, school management best practices, product updates, and stories from schools using modern software.',
+    keywords: [
+      ...defaultKeywords,
+      'Edwot blog',
+      'EdTech blog',
+      'school management tips',
+      'education technology news',
+    ],
+    ogImage: DEFAULT_OG_IMAGE,
+  },
 };
 
 export function getPageSeo(page: AppPage): PageSeo {

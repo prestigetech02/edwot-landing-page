@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star } from 'lucide-react';
 import Reveal from './motion/Reveal';
-import TiltCard from './motion/TiltCard';
 import MagneticButton from './motion/MagneticButton';
 
 const testimonials = [
@@ -30,9 +29,9 @@ const testimonials = [
 ];
 
 const primaryButtonClass =
-  'bg-[#f58634] hover:bg-[#e07828] text-white font-semibold px-5 sm:px-7 py-3 rounded-lg sm:rounded-xl flex items-center justify-center gap-2 transition-colors';
+  'w-full sm:w-auto bg-[#f58634] hover:bg-[#e07828] text-white font-semibold px-5 sm:px-7 py-3 rounded-lg sm:rounded-xl inline-flex items-center justify-center gap-2 transition-colors';
 const secondaryButtonClass =
-  'border border-white/30 text-white bg-[#1a2060] font-semibold px-5 sm:px-7 py-3 rounded-lg sm:rounded-xl hover:bg-[#252d75] transition-colors';
+  'w-full sm:w-auto border border-white/30 text-white bg-[#1a2060] font-semibold px-5 sm:px-7 py-3 rounded-lg sm:rounded-xl inline-flex items-center justify-center hover:bg-[#252d75] transition-colors';
 
 interface CTAProps {
   tightTop?: boolean;
@@ -52,54 +51,64 @@ export default function CTA({ tightTop = false }: CTAProps) {
   const active = testimonials[activeIndex];
 
   return (
-    <section className={`px-4 sm:px-6 ${tightTop ? 'pt-4 sm:pt-6 pb-12 sm:pb-16' : 'py-12 sm:py-16'}`}>
+    <section
+      className={`overflow-x-hidden px-4 sm:px-6 ${tightTop ? 'pt-4 sm:pt-6 pb-12 sm:pb-16' : 'py-12 sm:py-16'}`}
+    >
       <div className="max-w-6xl mx-auto">
         <Reveal variant="scaleIn">
-          <div className="relative overflow-hidden rounded-2xl bg-[#0b1140] border border-[#1a2060]">
-            <div className="relative z-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center px-6 sm:px-8 lg:px-10 py-12 sm:py-14">
-              <div className="space-y-5 text-white max-w-2xl">
-                <p className="text-xs uppercase tracking-[0.35em] text-[#9cacf9]">Trusted by schools</p>
-                <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-[#0b1140] border border-[#1a2060]">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-10 items-center px-4 py-8 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
+              <div className="space-y-4 sm:space-y-5 text-white text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-[#9cacf9]">
+                  Trusted by schools
+                </p>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
                   Join Hundreds of Schools That <span className="text-[#f58634]">Care</span>
                 </h2>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   Edwot is trusted by schools of all sizes to simplify operations and improve education.
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  <MagneticButton>
-                    <button className={primaryButtonClass}>Start Free Trial</button>
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center lg:justify-start pt-1">
+                  <MagneticButton className="w-full sm:w-auto">
+                    <button type="button" className={primaryButtonClass}>
+                      Start Free Trial
+                    </button>
                   </MagneticButton>
-                  <MagneticButton strength={0.25}>
-                    <button className={secondaryButtonClass}>Book a Demo</button>
+                  <MagneticButton strength={0.25} className="w-full sm:w-auto">
+                    <button type="button" className={secondaryButtonClass}>
+                      Book a Demo
+                    </button>
                   </MagneticButton>
                 </div>
               </div>
 
-              <TiltCard intensity={6} className="relative">
-                <div className="rounded-[28px] border border-[#2a3278] bg-[#151b52] p-6 min-h-[220px]">
+              <div className="w-full max-w-md mx-auto lg:max-w-none lg:mx-0">
+                <div className="rounded-2xl sm:rounded-[28px] border border-[#2a3278] bg-[#151b52] p-5 sm:p-6">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeIndex}
-                      initial={{ opacity: 0, y: 16 }}
+                      initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
+                      exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2a3278] text-[#9cacf9] text-4xl font-black leading-none">
+                      <div className="inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-[#2a3278] text-[#9cacf9] text-3xl sm:text-4xl font-black leading-none">
                         "
                       </div>
-                      <p className="mt-5 text-sm text-slate-100 leading-relaxed">{active.quote}</p>
-                      <div className="mt-6 flex items-center gap-3">
-                        <img
-                          src={active.avatar}
-                          alt={`${active.name} avatar`}
-                          className="h-10 w-10 rounded-full object-cover border-2 border-[#2a3278]"
-                        />
-                        <div className="min-w-0">
-                          <p className="font-semibold text-white">{active.name}</p>
-                          <p className="text-xs text-slate-300 truncate">{active.role}</p>
+                      <p className="mt-4 sm:mt-5 text-sm text-slate-100 leading-relaxed">{active.quote}</p>
+                      <div className="mt-5 sm:mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={active.avatar}
+                            alt={`${active.name} avatar`}
+                            className="h-10 w-10 shrink-0 rounded-full object-cover border-2 border-[#2a3278]"
+                          />
+                          <div className="min-w-0 text-left">
+                            <p className="font-semibold text-white text-sm sm:text-base">{active.name}</p>
+                            <p className="text-xs text-slate-300 leading-snug">{active.role}</p>
+                          </div>
                         </div>
-                        <div className="ml-auto flex items-center gap-1 text-amber-300">
+                        <div className="flex items-center gap-1 text-amber-300 sm:ml-auto shrink-0">
                           {[...Array(5)].map((_, idx) => (
                             <Star key={idx} className="h-4 w-4" />
                           ))}
@@ -121,7 +130,7 @@ export default function CTA({ tightTop = false }: CTAProps) {
                     />
                   ))}
                 </div>
-              </TiltCard>
+              </div>
             </div>
           </div>
         </Reveal>

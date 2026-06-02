@@ -65,8 +65,18 @@ export default function WhyEdwotPage() {
     <main className="bg-white">
       <section className="relative overflow-x-hidden pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid gap-10 items-start lg:items-center lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="w-full lg:max-w-xl text-center lg:text-left space-y-6 mx-auto lg:mx-0">
+          <div className="grid gap-10 items-start lg:items-center lg:grid-cols-[1.05fr_0.95fr]">
+            <Reveal variant="scaleIn" delay={0.14} className="relative mx-auto w-full max-w-2xl lg:max-w-none lg:ml-[-5rem] xl:ml-[-8rem] 2xl:ml-[-10rem]">
+              <motion.img
+                src="/hero-image.png"
+                alt="Edwot platform"
+                className="block w-full h-auto rounded-2xl border border-gray-200"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </Reveal>
+
+            <div className="w-full lg:max-w-xl text-center lg:text-left space-y-6 mx-auto lg:mx-0 lg:ml-auto">
               <Reveal variant="fadeUpSubtle">
                 <div className="inline-flex items-center gap-2 bg-[#1800AD]/10 border border-[#1800AD]/20 rounded-full px-3.5 py-1 text-sm mx-auto lg:mx-0">
                   <span className="text-[#1800AD]">✨</span>
@@ -106,16 +116,6 @@ export default function WhyEdwotPage() {
                 </div>
               </Reveal>
             </div>
-
-            <Reveal variant="scaleIn" delay={0.14} className="relative mx-auto w-full max-w-2xl lg:max-w-none lg:mr-[-5rem] xl:mr-[-8rem] 2xl:mr-[-10rem]">
-              <motion.img
-                src="/hero-image.png"
-                alt="Edwot platform"
-                className="block w-full h-auto rounded-2xl border border-gray-200"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              />
-            </Reveal>
           </div>
         </div>
       </section>

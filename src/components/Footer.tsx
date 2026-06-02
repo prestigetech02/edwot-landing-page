@@ -5,6 +5,8 @@ import Reveal from './motion/Reveal';
 const footerLinkPaths: Record<string, string> = {
   Features: '/features',
   'Why Edwot': '/why-edwot',
+  'About Us': '/why-edwot',
+  Blog: '/blog',
   Pricing: '/pricing',
   'Contact Us': '/contact',
 };

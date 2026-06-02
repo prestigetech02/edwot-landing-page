@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustedBy from './components/TrustedBy';
+import AdministratorsSection from './components/AdministratorsSection';
+import ParentsSection from './components/ParentsSection';
+import TeachersSection from './components/TeachersSection';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import Seo from './components/Seo';
@@ -9,6 +12,7 @@ import FeaturesPage from './FeaturesPage';
 import WhyEdwotPage from './WhyEdwotPage';
 import PricingPage from './PricingPage';
 import ContactPage from './ContactPage';
+import BlogPage from './BlogPage';
 import MouseSpotlight from './components/motion/MouseSpotlight';
 import PageTransition from './components/motion/PageTransition';
 import Reveal from './components/motion/Reveal';
@@ -61,11 +65,16 @@ function App() {
         return <PricingPage />;
       case 'contact':
         return <ContactPage />;
+      case 'blog':
+        return <BlogPage />;
       default:
         return (
           <>
             <Hero />
             <TrustedBy />
+            <AdministratorsSection />
+            <ParentsSection />
+            <TeachersSection />
           </>
         );
     }
