@@ -1,0 +1,16 @@
+{
+  "name": "Edwot — School Management Platform",
+  "short_name": "Edwot",
+  "description": "All-in-one school management software for modern schools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1800AD",
+  "icons": [
+    {
+      "src": "/edwot_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
