@@ -9,6 +9,7 @@ const footerLinkPaths: Record<string, string> = {
   Blog: '/blog',
   Pricing: '/pricing',
   'Contact Us': '/contact',
+  'Help Center': '/help-centre',
 };
 
 export default function Footer() {

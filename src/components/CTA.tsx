@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { useDemoModal } from '../context/DemoModalContext';
 import Reveal from './motion/Reveal';
 import MagneticButton from './motion/MagneticButton';
 
@@ -38,6 +39,7 @@ interface CTAProps {
 }
 
 export default function CTA({ tightTop = false }: CTAProps) {
+  const { openDemoModal } = useDemoModal();
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function CTA({ tightTop = false }: CTAProps) {
                     </button>
                   </MagneticButton>
                   <MagneticButton strength={0.25} className="w-full sm:w-auto">
-                    <button type="button" className={secondaryButtonClass}>
+                    <button type="button" onClick={() => openDemoModal()} className={secondaryButtonClass}>
                       Book a Demo
                     </button>
                   </MagneticButton>

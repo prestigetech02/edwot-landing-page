@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { blogPosts } from './data/blogPosts';
-import BlogHeroMesh from './components/BlogHeroMesh';
+import PageHeroMesh from './components/PageHeroMesh';
 import Reveal from './components/motion/Reveal';
 import { Stagger, StaggerItem } from './components/motion/Stagger';
 
@@ -8,7 +9,7 @@ export default function BlogPage() {
   return (
     <main className="bg-white">
       <section className="relative overflow-hidden pt-24 sm:pt-28 pb-14 sm:pb-16 px-4 sm:px-6 bg-[#0b1140] border-b border-[#1a2060]">
-        <BlogHeroMesh />
+        <PageHeroMesh variant="dark" />
         <div className="max-w-4xl mx-auto relative z-10 text-center space-y-5 sm:space-y-6">
           <Reveal variant="fadeUpSubtle">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#9cacf9]">
@@ -33,15 +34,23 @@ export default function BlogPage() {
 
       <section className="py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
+          <Reveal variant="fadeUp" className="mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Latest articles</h2>
+          </Reveal>
+
           <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8" stagger={0.1}>
             {blogPosts.map((post) => (
               <StaggerItem key={post.slug}>
-                <article className="group h-full flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors hover:border-[#1800AD]/30">
+                <motion.article
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className="group h-full flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 hover:border-[#1800AD]/30"
+                >
                   <a href={`#${post.slug}`} className="block overflow-hidden border-b border-gray-100">
                     <img
                       src={post.image}
                       alt={post.imageAlt}
-                      className="w-full aspect-[16/10] object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="w-full aspect-[16/10] object-cover object-center"
                     />
                   </a>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -52,13 +61,13 @@ export default function BlogPage() {
                     <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed flex-1">{post.excerpt}</p>
                     <a
                       href={`#${post.slug}`}
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1800AD] hover:text-[#140088] transition-colors"
+                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1800AD] hover:text-[#140088] transition-colors duration-200"
                     >
                       Read More
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                     </a>
                   </div>
-                </article>
+                </motion.article>
               </StaggerItem>
             ))}
           </Stagger>

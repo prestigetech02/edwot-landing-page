@@ -12,6 +12,7 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react';
+import { useDemoModal } from '../context/DemoModalContext';
 import { navReveal } from '../motion/variants';
 import type { AppPage } from '../types/navigation';
 
@@ -59,13 +60,15 @@ const supportLinks: NavLink[] = [
   {
     label: 'Help Centre',
     description: 'Find answers and step-by-step guides.',
-    href: '#',
+    href: '/help-centre',
+    page: 'help',
     icon: HelpCircle,
   },
   {
     label: 'Knowledge base',
     description: 'Browse setup, billing, and daily use.',
-    href: '#',
+    href: '/knowledge-base',
+    page: 'knowledge',
     icon: BookOpen,
   },
   {
@@ -80,19 +83,27 @@ function isExploreActive(currentPage: AppPage) {
   return currentPage === 'why' || currentPage === 'features' || currentPage === 'blog';
 }
 
-function isSupportActive(_currentPage: AppPage) {
-  return false;
+function isSupportActive(currentPage: AppPage) {
+  return currentPage === 'help' || currentPage === 'knowledge';
 }
 
 interface MegaMenuDropdownProps {
   links: NavLink[];
   promoImage: string;
   promoAlt: string;
+  plainPromo?: boolean;
   onNavigate: (page: AppPage) => void;
   onClose: () => void;
 }
 
-function MegaMenuDropdown({ links, promoImage, promoAlt, onNavigate, onClose }: MegaMenuDropdownProps) {
+function MegaMenuDropdown({
+  links,
+  promoImage,
+  promoAlt,
+  plainPromo = false,
+  onNavigate,
+  onClose,
+}: MegaMenuDropdownProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -133,16 +144,33 @@ function MegaMenuDropdown({ links, promoImage, promoAlt, onNavigate, onClose }: 
             );
           })}
         </div>
-        <div className="relative hidden w-40 shrink-0 border-l border-gray-100 bg-[#1800AD]/8 sm:block">
-          <div
-            className="absolute inset-0 opacity-40"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(24,0,173,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(24,0,173,0.06) 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-            }}
+        <div
+          className={`relative hidden shrink-0 border-l border-gray-100 sm:flex ${
+            plainPromo ? 'w-48 items-end justify-center px-1 pt-1 pb-0' : 'w-40'
+          }`}
+        >
+          {!plainPromo && (
+            <>
+              <div className="absolute inset-0 bg-[#1800AD]/8" />
+              <div
+                className="absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(24,0,173,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(24,0,173,0.06) 1px, transparent 1px)',
+                  backgroundSize: '20px 20px',
+                }}
+              />
+            </>
+          )}
+          <img
+            src={promoImage}
+            alt={promoAlt}
+            className={
+              plainPromo
+                ? 'relative h-full w-full origin-bottom scale-[1.06] object-contain object-bottom'
+                : 'relative h-full w-full object-cover object-center'
+            }
           />
-          <img src={promoImage} alt={promoAlt} className="relative h-full w-full object-cover object-center" />
         </div>
       </div>
     </motion.div>
@@ -156,6 +184,7 @@ interface NavMegaTriggerProps {
   links: NavLink[];
   promoImage: string;
   promoAlt: string;
+  plainPromo?: boolean;
   onOpen: () => void;
   onScheduleClose: () => void;
   onClose: () => void;
@@ -169,6 +198,7 @@ function NavMegaTrigger({
   links,
   promoImage,
   promoAlt,
+  plainPromo,
   onOpen,
   onScheduleClose,
   onClose,
@@ -186,6 +216,7 @@ function NavMegaTrigger({
             links={links}
             promoImage={promoImage}
             promoAlt={promoAlt}
+            plainPromo={plainPromo}
             onNavigate={onNavigate}
             onClose={onClose}
           />
@@ -202,6 +233,7 @@ function navLinkClass(active: boolean) {
 }
 
 export default function Navbar({ scrolled, currentPage, onNavigate }: NavbarProps) {
+  const { openDemoModal } = useDemoModal();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState<MegaMenuId | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<MegaMenuId | null>(null);
@@ -262,8 +294,9 @@ export default function Navbar({ scrolled, currentPage, onNavigate }: NavbarProp
             active={isExploreActive(currentPage)}
             isOpen={openMega === 'explore'}
             links={exploreLinks}
-            promoImage="/hero-image.png"
-            promoAlt="Edwot platform preview"
+            promoImage="/header.png"
+            promoAlt="Graduate celebrating academic success"
+            plainPromo
             onOpen={() => openMenu('explore')}
             onScheduleClose={scheduleClose}
             onClose={() => setOpenMega(null)}
@@ -283,8 +316,9 @@ export default function Navbar({ scrolled, currentPage, onNavigate }: NavbarProp
             active={isSupportActive(currentPage)}
             isOpen={openMega === 'support'}
             links={supportLinks}
-            promoImage="/Chrome_-_Light.png"
-            promoAlt="Edwot support preview"
+            promoImage="/header2.png"
+            promoAlt="Student using Edwot support resources"
+            plainPromo
             onOpen={() => openMenu('support')}
             onScheduleClose={scheduleClose}
             onClose={() => setOpenMega(null)}
@@ -305,6 +339,8 @@ export default function Navbar({ scrolled, currentPage, onNavigate }: NavbarProp
             Log in
           </a>
           <motion.button
+            type="button"
+            onClick={() => openDemoModal()}
             className="bg-[#1800AD] hover:bg-[#140088] text-white text-sm font-semibold px-4 sm:px-5 py-2 rounded-lg transition-colors whitespace-nowrap"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
@@ -397,6 +433,10 @@ export default function Navbar({ scrolled, currentPage, onNavigate }: NavbarProp
                 </a>
                 <button
                   type="button"
+                  onClick={() => {
+                    openDemoModal();
+                    setMobileOpen(false);
+                  }}
                   className="bg-[#1800AD] text-white text-sm font-semibold px-5 py-2.5 rounded-lg w-full"
                 >
                   Book a Demo

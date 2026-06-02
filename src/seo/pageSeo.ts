@@ -102,6 +102,34 @@ export const pageSeoConfig: Record<AppPage, PageSeo> = {
     ],
     ogImage: DEFAULT_OG_IMAGE,
   },
+  help: {
+    path: '/help-centre',
+    title: `Help Centre — ${SITE_NAME} Support & Guides`,
+    description:
+      'Search Edwot help articles and FAQs. Step-by-step guides for getting started, fees, attendance, communication, security, and school setup.',
+    keywords: [
+      ...defaultKeywords,
+      'Edwot help',
+      'school software support',
+      'Edwot FAQ',
+      'school management help',
+    ],
+    ogImage: DEFAULT_OG_IMAGE,
+  },
+  knowledge: {
+    path: '/knowledge-base',
+    title: `Knowledge Base — ${SITE_NAME} Documentation`,
+    description:
+      'Browse Edwot documentation: account setup, student management, attendance, fees, examinations, and parent communication guides.',
+    keywords: [
+      ...defaultKeywords,
+      'Edwot knowledge base',
+      'school software documentation',
+      'Edwot guides',
+      'school ERP help articles',
+    ],
+    ogImage: DEFAULT_OG_IMAGE,
+  },
 };
 
 export function getPageSeo(page: AppPage): PageSeo {

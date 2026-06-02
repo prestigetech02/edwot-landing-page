@@ -6,6 +6,8 @@ import { Stagger, StaggerItem } from './components/motion/Stagger';
 import TiltCard from './components/motion/TiltCard';
 import PricingTrustBar from './components/PricingTrustBar';
 import PricingComparePlans from './components/PricingComparePlans';
+import PageHeroMesh from './components/PageHeroMesh';
+import { useDemoModal } from './context/DemoModalContext';
 
 type BillingPeriod = 'monthly' | 'yearly';
 
@@ -79,33 +81,42 @@ function getBillingSuffix(billingPeriod: BillingPeriod) {
 
 export default function PricingPage() {
   const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>('monthly');
+  const { openDemoModal } = useDemoModal();
 
   return (
     <div className="bg-white">
-      <section className="pt-28 sm:pt-32 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-7">
-          <Reveal variant="fadeUpSubtle">
-            <div className="inline-flex items-center gap-2 bg-[#1800AD]/10 border border-[#1800AD]/20 rounded-full px-3.5 py-1 text-sm">
-              <span className="text-[#1800AD]">⚡</span>
-              <span className="text-xs font-medium text-[#1800AD]">Simple, Transparent Pricing</span>
-            </div>
-          </Reveal>
+      <section className="pb-6 sm:pb-8">
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0" aria-hidden>
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-50 from-[0%] via-gray-50/75 via-[40%] via-white/90 via-[78%] to-white to-[100%]" />
+            <PageHeroMesh variant="light" fadeOut />
+          </div>
 
-          <Reveal variant="fadeUp" delay={0.08}>
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-gray-900">
-                Choose the Perfect Plan for <span className="text-[#1800AD]">Your School</span>
-              </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Flexible plans for schools of all sizes. All plans include core features to help you manage and grow your institution effortlessly.
-              </p>
-            </div>
-          </Reveal>
+          <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32">
+            <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-7 pb-8 sm:pb-10">
+            <Reveal variant="fadeUpSubtle">
+              <div className="inline-flex items-center gap-2 bg-[#1800AD]/10 border border-[#1800AD]/20 rounded-full px-3.5 py-1 text-sm">
+                <span className="text-[#1800AD]">⚡</span>
+                <span className="text-xs font-medium text-[#1800AD]">Simple, Transparent Pricing</span>
+              </div>
+            </Reveal>
 
-          <Reveal variant="fadeUp" delay={0.16}>
-            <div className="flex justify-center">
+            <Reveal variant="fadeUp" delay={0.08}>
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-gray-900">
+                  Choose the Perfect Plan for <span className="text-[#1800AD]">Your School</span>
+                </h1>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                  Flexible plans for schools of all sizes. All plans include core features to help you manage and grow your institution effortlessly.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+            <Reveal variant="fadeUp" delay={0.16}>
+              <div className="flex justify-center pb-10 sm:pb-12">
               <div
-                className="relative inline-flex items-center gap-0.5 rounded-full border border-gray-200 bg-gray-50 p-1"
+                className="relative inline-flex items-center gap-0.5 rounded-full border border-gray-200 bg-white p-1"
                 role="tablist"
                 aria-label="Billing period"
               >
@@ -149,11 +160,12 @@ export default function PricingPage() {
                   </span>
                 </button>
               </div>
-            </div>
-          </Reveal>
+              </div>
+            </Reveal>
+          </div>
         </div>
 
-        <div className="max-w-7xl mx-auto mt-8 sm:mt-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4">
           <motion.div
             key={billingPeriod}
             initial={{ opacity: 0.6 }}
@@ -214,7 +226,11 @@ export default function PricingPage() {
                               </p>
                             )}
                           </div>
-                          <button className={`w-full px-4 py-3 mb-8 font-semibold rounded-lg transition-colors ${plan.ctaClass}`}>
+                          <button
+                            type="button"
+                            onClick={() => openDemoModal({ plan: plan.name })}
+                            className={`w-full px-4 py-3 mb-8 font-semibold rounded-lg transition-colors ${plan.ctaClass}`}
+                          >
                             {plan.cta}
                           </button>
                           <div className="space-y-3 flex-1">

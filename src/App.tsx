@@ -13,9 +13,12 @@ import WhyEdwotPage from './WhyEdwotPage';
 import PricingPage from './PricingPage';
 import ContactPage from './ContactPage';
 import BlogPage from './BlogPage';
+import HelpCentrePage from './HelpCentrePage';
+import KnowledgeBasePage from './KnowledgeBasePage';
 import MouseSpotlight from './components/motion/MouseSpotlight';
 import PageTransition from './components/motion/PageTransition';
 import Reveal from './components/motion/Reveal';
+import { DemoModalProvider } from './context/DemoModalContext';
 import {
   migrateHashToPath,
   normalizeLegacyPaths,
@@ -67,6 +70,10 @@ function App() {
         return <ContactPage />;
       case 'blog':
         return <BlogPage />;
+      case 'help':
+        return <HelpCentrePage />;
+      case 'knowledge':
+        return <KnowledgeBasePage />;
       default:
         return (
           <>
@@ -81,18 +88,20 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-white">
-      <Seo page={page} />
-      <MouseSpotlight />
-      <Navbar scrolled={scrolled} currentPage={page} onNavigate={navigate} />
-      <PageTransition pageKey={page}>{renderPage()}</PageTransition>
-      <Reveal variant="fadeUpSubtle">
-        <CTA tightTop={page === 'pricing'} />
-      </Reveal>
-      <Reveal variant="fadeUp" delay={0.08}>
-        <Footer />
-      </Reveal>
-    </div>
+    <DemoModalProvider>
+      <div className="relative min-h-screen overflow-x-hidden bg-white">
+        <Seo page={page} />
+        <MouseSpotlight />
+        <Navbar scrolled={scrolled} currentPage={page} onNavigate={navigate} />
+        <PageTransition pageKey={page}>{renderPage()}</PageTransition>
+        <Reveal variant="fadeUpSubtle">
+          <CTA tightTop={page === 'pricing'} />
+        </Reveal>
+        <Reveal variant="fadeUp" delay={0.08}>
+          <Footer />
+        </Reveal>
+      </div>
+    </DemoModalProvider>
   );
 }
 

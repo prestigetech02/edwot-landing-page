@@ -1,4 +1,4 @@
-export type AppPage = 'home' | 'features' | 'why' | 'blog' | 'pricing' | 'contact';
+export type AppPage = 'home' | 'features' | 'why' | 'blog' | 'pricing' | 'contact' | 'help' | 'knowledge';
 
 const hashToPage: Record<string, AppPage> = {
   '#features': 'features',
@@ -22,6 +22,8 @@ export function pageFromLocation(pathname: string, hash = ''): AppPage {
   if (path === '/blog') return 'blog';
   if (path === '/pricing') return 'pricing';
   if (path === '/contact') return 'contact';
+  if (path === '/help-centre') return 'help';
+  if (path === '/knowledge-base') return 'knowledge';
   return 'home';
 }
 
@@ -37,6 +39,10 @@ export function pathFromPage(page: AppPage): string {
       return '/pricing';
     case 'contact':
       return '/contact';
+    case 'help':
+      return '/help-centre';
+    case 'knowledge':
+      return '/knowledge-base';
     default:
       return '/';
   }
